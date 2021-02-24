@@ -126,11 +126,12 @@ export default function(opt) {
             return;
         }
 
-        const clientId = GetClientIdFromHostname(hostname);
+        let clientId = GetClientIdFromHostname(hostname);
         if (!clientId) {
             appCallback(req, res);
             return;
         }
+        clientId = clientId.split('.')[0];
 
         const client = manager.getClient(clientId);
         if (!client) {
